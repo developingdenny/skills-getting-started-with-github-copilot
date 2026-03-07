@@ -19,8 +19,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const activityCard = document.createElement("div");
         activityCard.className = "activity-card";
 
-        const spotsLeft = details.max_participants - details.participants.length;
         const participants = Array.isArray(details.participants) ? details.participants : [];
+        const maxParticipants = typeof details.max_participants === "number" ? details.max_participants : participants.length;
+        const spotsLeft = maxParticipants - participants.length;
         const participantsMarkup = participants.length
           ? participants
             .map(
